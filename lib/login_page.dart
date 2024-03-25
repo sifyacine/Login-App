@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:loginapp/colors.dart';
+import 'package:loginapp/home_page.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -149,7 +150,17 @@ class _LoginScreenState extends State<LoginScreen> {
                               )
                             ),
                             onPressed: (){
-                              _formKey.currentState!.validate();
+                              if(_formKey.currentState!.validate()){
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context){
+                                          return HomePage();
+                                        }
+                                        ),
+                                        (route) => false);
+                              }
+
                             },
                             child: Text(
                               "Login",
